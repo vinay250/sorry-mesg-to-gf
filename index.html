@@ -1,0 +1,206 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forgive Me 💙</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    height:100vh;
+    overflow:hidden;
+    background:radial-gradient(circle at center,#0f2027,#203a43,#2c5364);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+/* Hologram glow background */
+body::before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    background:radial-gradient(circle,#00f5ff,#004e92);
+    filter:blur(150px);
+    animation:pulse 5s infinite alternate;
+    z-index:-1;
+}
+
+@keyframes pulse{
+    from{transform:scale(1);}
+    to{transform:scale(1.2);}
+}
+
+/* Main Container */
+.container{
+    text-align:center;
+    background:rgba(255,255,255,0.08);
+    padding:50px;
+    border-radius:25px;
+    backdrop-filter:blur(15px);
+    box-shadow:0 0 40px rgba(0,255,255,0.4);
+    width:550px;
+    position:relative;
+}
+
+/* Hologram Text */
+.hologram{
+    font-family:'Orbitron',sans-serif;
+    font-size:40px;
+    background:linear-gradient(90deg,#00f5ff,#00d4ff,#00f5ff);
+    background-size:200%;
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:shine 3s linear infinite;
+}
+
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:200%;}
+}
+
+/* Typing effect */
+.typing{
+    margin-top:20px;
+    font-size:18px;
+    min-height:60px;
+}
+
+/* Button */
+button{
+    margin-top:30px;
+    padding:15px 35px;
+    border:none;
+    border-radius:40px;
+    font-size:18px;
+    cursor:pointer;
+    background:linear-gradient(45deg,#00f5ff,#0072ff);
+    color:white;
+    transition:0.4s;
+    box-shadow:0 0 20px #00f5ff;
+}
+
+button:hover{
+    transform:scale(1.15);
+    box-shadow:0 0 40px #00f5ff;
+}
+
+/* Hidden Message */
+.hidden{
+    display:none;
+    margin-top:25px;
+    font-size:18px;
+    animation:fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+/* Floating hologram particles */
+.particle{
+    position:absolute;
+    width:8px;
+    height:8px;
+    background:#00f5ff;
+    border-radius:50%;
+    box-shadow:0 0 15px #00f5ff;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh);opacity:1;}
+    100%{transform:translateY(-10vh);opacity:0;}
+}
+
+/* Click Name Glow */
+.name{
+    cursor:pointer;
+    color:#00f5ff;
+    text-shadow:0 0 10px #00f5ff;
+    transition:0.4s;
+}
+
+.name:hover{
+    text-shadow:0 0 25px #00f5ff,0 0 50px #00f5ff;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 class="hologram">To My Favorite Person</h1>
+
+<p class="typing" id="typingText"></p>
+
+<button onclick="forgive()">Click To Forgive Me 💙</button>
+
+<div class="hidden" id="hiddenMsg">
+    Thank you for giving me another chance.  
+    You truly mean a lot to me. ✨  
+    I promise to protect our bond always.
+</div>
+
+</div>
+
+<script>
+
+/* ======= CHANGE HER NAME HERE ======= */
+const herName = "YourNameHere";
+
+/* Typing Message */
+const message = `Hey ${herName},  
+I know I made a mistake.  
+Hurting you was never my intention.  
+You are someone very special in my life.  
+Please forgive me and let's move forward together.`;
+
+let i = 0;
+function typingEffect(){
+    if(i < message.length){
+        document.getElementById("typingText").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typingEffect,40);
+    }
+}
+typingEffect();
+
+/* Forgive Button */
+function forgive(){
+    document.getElementById("hiddenMsg").style.display="block";
+}
+
+/* Floating Hologram Particles */
+setInterval(function(){
+    let particle=document.createElement("div");
+    particle.classList.add("particle");
+    particle.style.left=Math.random()*100+"vw";
+    particle.style.width=Math.random()*6+4+"px";
+    particle.style.height=particle.style.width;
+    document.body.appendChild(particle);
+
+    setTimeout(()=>{particle.remove();},6000);
+},200);
+
+</script>
+
+</body>
+</html>
+```
